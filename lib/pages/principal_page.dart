@@ -1,27 +1,25 @@
-import 'dart:io';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:matcher/matcher.dart';
 import 'package:get/get.dart';
 import 'package:sindri/pages/registro_page.dart';
 import 'package:sindri/pages/login_page.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class PrincipalPage extends StatelessWidget {
+  const PrincipalPage({Key? key}) : super(key: key);
+
   _scroll() {
     return ListView(
       children: [
-        Padding(
+        const Padding(
           padding: EdgeInsets.all(1),
         ),
-        SizedBox(
+        const SizedBox(
           height: 15,
         ),
         CarouselSlider(
           items: [
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
@@ -38,7 +36,7 @@ class PrincipalPage extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
@@ -55,7 +53,7 @@ class PrincipalPage extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
@@ -72,7 +70,7 @@ class PrincipalPage extends StatelessWidget {
               ),
             ),
             Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(15)),
                 boxShadow: [
                   BoxShadow(
@@ -142,32 +140,56 @@ class PrincipalPage extends StatelessWidget {
     );
   }
 
+  _buttons2() {
+    return Row(
+      children: [
+        const Text(
+          'Hola, soy Sindri', //Center text
+          style: TextStyle(
+            fontSize: 20,
+            color: Colors.green,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        const SizedBox(height: 100), //Separación
+        Row(
+          children: [
+            ElevatedButton(
+              child: const Text('Registrar'),
+              onPressed: () {
+                // print("--asdasdas--");
+                Get.to(RegistroPage(), transition: Transition.zoom);
+              },
+            ), //left button
+            const SizedBox(
+              width: 5,
+            ),
+            ElevatedButton(
+              child: const Text('Login'),
+              onPressed: () {
+                // print("--asdasdas--");
+                Get.to(LoginPage(), transition: Transition.zoom);
+              },
+            ),
+          ],
+        )
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.redAccent,
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         mainAxisSize: MainAxisSize.max,
         children: [
-          Text('COMIDAAAA'),
-          Expanded(
+          SizedBox(
+            height: 350,
             child: _scroll(),
           ),
-          /*Flexible(
-            flex: 2,
-            child: _scroll(),
-          ),
-          Flexible(
-            flex: 3,
-            child: Container(color: Colors.black26),
-          ),
-          Flexible(
-            flex: 1,
-            child: _buttons(),
-          )*/
-          _scroll(),
-          _buttons(),
+          _buttons2(),
         ],
       ),
     );
